@@ -1,0 +1,299 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<style type="text/css">
+    .modal
+    {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: black;
+        z-index: 99;
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+        -moz-opacity: 0.8;
+        min-height: 100%;
+        width: 100%;
+    }
+    .loading
+    {
+        font-family: Arial;
+        font-size: 10pt;
+        border: 5px solid #67CFF5;
+        width: 200px;
+        height: 100px;
+        display: none;
+        position: fixed;
+        background-color: White;
+        z-index: 999;
+    }
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function ShowProgress() {
+        setTimeout(function () {
+            var modal = $('<div />');
+            modal.addClass("modal");
+            $('body').append(modal);
+            var loading = $(".loading");
+            loading.show();
+            var top = Math.max($(window).height() / 2 - loading[0].offsetHeight / 2, 0);
+            var left = Math.max($(window).width() / 2 - loading[0].offsetWidth / 2, 0);
+            loading.css({ top: top, left: left });
+        }, 200);
+    }
+    $('form').live("submit", function () {
+        ShowProgress();
+    });
+</script>
+<script type="text/javascript">
+    function HideProgress() {
+        setTimeout(function () {
+            var modal = $('<div />');
+            modal.addClass("modal");
+            $('body').append(modal);
+            var loading = $(".loading");
+            loading.hide();
+            var top = Math.max($(window).height() / 2 - loading[0].offsetHeight / 2, 0);
+            var left = Math.max($(window).width() / 2 - loading[0].offsetWidth / 2, 0);
+            loading.css({ top: top, left: left });
+        }, 200);
+    }
+    $('form').live("submit", function () {
+        ShowProgress();
+    });
+</script>
+<!-- Basic Page Head -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>HAJJ E-WALLET SYSTEM</title>
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="keywords" content="">
+
+<!-- Mobile Meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- Favicons -->
+<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+<!-- Css -->
+<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="assets/css/bxslider.css">
+<link rel="stylesheet" type="text/css" href="assets/css/font.awesome.min.css">
+<link rel="stylesheet" type="text/css" href="assets/css/magnific.popup.css">
+<link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="assets/css/owl.theme.css">
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+
+<!-- Google Fonts -->
+<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <style>
+
+.alert-box {
+	padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;  
+}
+
+.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    display: block;
+    height:100px;
+    text-align:center;
+    padding:5px;
+}
+
+.failure {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    display: none;
+}
+
+.warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    display: none;
+}
+
+</style>  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52754132-6', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+<div class="loading" align="center">
+    Saving.. Please wait.<br />
+    <br />
+    <img src="assets/img/loader1.gif" alt="" />
+</div>
+<!-- Site Loader -->
+<div class="site-loader">
+	<img src="assets/img/loader.gif" alt="Loading">
+</div>
+<!-- Site Loader End -->
+
+<!-- Site Back Top -->
+<div class="site-back-top" title="Back to top">
+	<i class="fa fa-angle-up"></i>
+</div>
+<!-- Site Back Top End -->
+
+<!-- Site Header -->
+<header>
+	<div class="site-wrapper">
+        <div class="site-header">
+              <!-- Header Top -->
+            <div class="header-top">
+                <ul class="clearfix">
+                    <li class="ht-phone">92000 00011</li>
+                   
+                    <li class="ht-search">
+                        <form>
+                            <input type="text" placeholder="SEARCH" required>
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <!-- Header Top End -->
+            
+            <!-- Header Bottom -->
+            <div class="header-bottom">
+                <div class="hb-toggle"><i class="fa fa-bars"></i></div>
+                <div class="hb-logo"><a href="#"><img src="assets/img/rsz_hajjlogo.png" alt="#"></a></div>
+                <div class="hb-menu">
+                    <nav>
+                        <ul class="clearfix">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">NEW</a></li>
+                           
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- Header Bottom End -->
+        </div>
+    </div>
+    <div class="site-banner">
+	<div class="banner-image">
+    	<img src="assets/img/REALHAJJIMG.jpg" alt="Banner">
+    </div>
+    <div class="banner-caption shadow">
+    	<div class="caption-wrapper">
+            <h1>E-WALLET REQUEST</h1>
+            
+        </div>
+    </div>
+</div>
+</header>
+<!-- Site Header End -->
+
+<!-- Site Main -->
+<main>
+    <div class="site-wrapper">
+       
+
+
+
+        <!-- Section Contact -->
+        <section class="site-block white" id="section-contact">
+            
+                    <div class="data-form">
+                        <form action="#" id="contact-form" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                          
+                              
+                             <div class="success">CONGRATULATION YOU ARE SUCCESSFULLY SUBMITTED DATA</div>
+                             
+                            </div>
+
+                        </form>
+                   
+            </div>
+        </section>
+        <!-- Section Contact End -->        
+    </div>
+</main>
+<!-- Site Main End -->
+<div align="right"><!-- </div>
+<!-- Site Footer -->
+<footer>
+	<div>
+        <div class="site-footer">
+        <p>&nbsp;</p>
+      
+     
+       
+           <!-- Footer Middle -->
+            <div class="footer-middle clearfix">
+                <div class="fm-social">
+                    <h4>FOLLOW US SOCIAL MEDIA</h4>
+                    <ul class="social-icons social-round clearfix">
+                        <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                </div>
+                <div class="fm-newsletter">
+                    <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
+                    <div class="newsletter-form clearfix">
+                    <form>
+                        <input type="text" placeholder="ENTER YOUR E-MAIL ADDRESS" required>
+                        <button type="submit"><i class="fa fa-paper-plane"></i></button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Middle End -->
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom clearfix">
+                <div class="fb-copyright">© TEAM B-079.</div>
+                <div class="fb-contact">
+                    <ul class="clearfix">
+                        <li><i class="fa fa-map-marker"></i> HAJJ MISSION Kingdom of Saudi Arabia</li>
+                        <li><i class="fa fa-phone"></i> 920000566</li>
+                        <li><i class="fa fa-paper-plane"></i> <a href="#">INFO@HAJJ.COM</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Footer Bottom End -->
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/bxslider.min.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/jquery.countTo.js"></script>
+<script src="assets/js/jquery.fitvids.js"></script>
+<script src="assets/js/jquery.magnific.popup.min.js"></script>
+<script src="assets/js/contact.form.js"></script>
+
+<!-- Map Scripts -->
+<script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+<script src="assets/js/gmap3.min.js"></script>
+
+<!-- Custom Scripts -->
+<script src="assets/js/custom.js"></script>
+</body>
+</html>
