@@ -16,6 +16,7 @@ public partial class _Default : System.Web.UI.Page
     [WebMethod]
     public static string SaveReg(string fname, string mname, string lname, string nationality, string email, string mobile_no, string card_type, string card_no)
     {
+       
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConString"].ToString());
         try
         {

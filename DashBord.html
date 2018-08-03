@@ -67,11 +67,17 @@
 <script type="text/javascript">
     function GotoCreate() {
         ShowProgress();
-        window.location = "E-WalletRegistration.html";
+        window.location = "E-WalletCreation.html";
     }
 
-
-
+    function GotoDeposit() {
+        ShowProgress();
+        window.location = "Deposit.html";
+    }
+    function GotoRefund() {
+        ShowProgress();
+        window.location = "Refund.html";
+    }
     function ShowProgress() {
         setTimeout(function () {
             var modal = $('<div />');
@@ -220,7 +226,7 @@
             <!-- Header Bottom -->
             <div class="header-bottom">
                 <div class="hb-toggle"><i class="fa fa-bars"></i></div>
-                <div class="hb-logo"><a href="#"><img src="assets/img/rsz_hajjlogo.png" alt="#"></a></div>
+                <div class="hb-logo"><a href="#"></a></div>
                 <div class="hb-menu">
                     <nav>
                         <ul class="clearfix">
@@ -235,15 +241,15 @@
         </div>
     </div>
     <div class="site-banner">
-	<div class="banner-image">
-    	<img src="assets/img/REALHAJJIMG.jpg" alt="Banner">
+	<div class="banner-image1">
+    	<img src="assets/img/banner.jpg" alt="Banner">
     </div>
-    <div class="banner-caption shadow">
+    <!--<div class="banner-caption shadow">
     	<div class="caption-wrapper">
             <h1>E-Wallet Dash Bord</h1>
             
         </div>
-    </div>
+    </div>-->
 </div>
 </header>
 <!-- Site Header End -->
@@ -266,20 +272,20 @@
                              
                                 
                                 
-                               <div class="col-md-3">
+                               <div class="col-md-4">
                                <input id="CREATE" type="button" value="CREATE" class="CREATE"  onclick="GotoCreate();"/>
                                   
                                 </div>
-                                 <div class="col-md-3">
-                                  <input id="DEPOSIT" type="button" value="DEPOSIT" class="DEPOSIT" />
+                                 <div class="col-md-4">
+                                  <input id="DEPOSIT" type="button" value="DEPOSIT" class="DEPOSIT" onclick="GotoDeposit();" />
                                  
                                 </div>
-                            <div class="col-md-3">
+                            <!--<div class="col-md-3">
                              <input id="PAY" type="button" value="PAY" class="PAY" />
                                  
-                                </div>    
-                              <div class="col-md-3">
-                               <input id="REFUND" type="button" value="REFUND" class="REFUND" />
+                                </div>-->    
+                              <div class="col-md-4">
+                               <input id="REFUND" type="button" value="REFUND" class="REFUND" onclick="GotoRefund();" />
                                   
                                 </div>
                         
@@ -295,14 +301,14 @@
 <!-- Site Main End -->
 <div align="right"><!-- </div>
 <!-- Site Footer -->
-<footer>
+<!--<footer>
 	<div>
         <div class="site-footer">
         <p>&nbsp;</p>
       
      
        
-           <!-- Footer Middle -->
+      
             <div class="footer-middle clearfix">
                 <div class="fm-social">
                     <h4>FOLLOW US SOCIAL MEDIA</h4>
@@ -323,9 +329,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Footer Middle End -->
-            
-            <!-- Footer Bottom -->
+          
             <div class="footer-bottom clearfix">
                 <div class="fb-copyright">© TEAM B-079.</div>
                 <div class="fb-contact">
@@ -336,10 +340,10 @@
                     </ul>
                 </div>
             </div>
-            <!-- Footer Bottom End -->
+           
         </div>
     </div>
-</footer>
+</footer>-->
 
 <!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>

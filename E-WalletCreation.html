@@ -28,11 +28,134 @@
         background-color: White;
         z-index: 999;
     }
+     .loading1
+    {
+       
+        display: none;
+      
+        background-color: White;
+        z-index: 999;
+    }
+      .loading2
+    {
+       
+        display: none;
+      
+        background-color: White;
+        z-index: 999;
+    }
+      .loading3
+    {
+       
+        display: none;
+      
+        background-color: White;
+        z-index: 999;
+    }
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
-    function ConnectingToHajVisaPortal() {
 
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds) {
+                break;
+            }
+        }
+    }
+
+    function GoBack() {
+        window.location = "DashBord.html";
+    }
+
+    function div3() {
+        $('#loading3').toggle('slow', function () {
+
+        });
+    }
+    function div2() {
+        $('#loading2').toggle('slow', function () {
+            $('#my_image3').attr('src', 'assets/img/verifying.png');
+            sleep(1000);
+            $('#my_image4').attr('src', 'assets/img/verifying.png');
+          
+            $("div.success").fadeIn(300).delay(1500).fadeIn(400);
+        });
+    }
+    function ConnectingToHajVisaPortal() {
+     var Messege = "";
+            var fname = $.trim($("#txtFname").val());
+            var mname = $.trim($("#txtMname").val());
+            var lname = $.trim($("#txtLname").val());
+
+            var nationality = $.trim($("#ddlNation").val());
+            var email = $.trim($("#txtEmail").val());
+
+            var mob = $.trim($("#txtMob").val());
+
+            var cardtype = $.trim($("#ddlCardType").val());
+
+            var cardno = $.trim($("#txtCardNo").val());
+
+    
+
+
+            if (fname == '') {
+
+                Messege = "Can not Blank Name";
+                document.getElementById("txtFname").style.border = "1px solid red";
+            }
+            else {
+                document.getElementById("txtFname").style.border = "1px solid inherit";
+            }
+            if (lname == '') {
+                Messege = "Can not Blank Name";
+                document.getElementById("txtLname").style.border = "1px solid red";
+            }
+
+            if (nationality == 0) {
+                Messege = "Can not Blank Name";
+                document.getElementById("ddlNation").style.border = "1px solid red";
+            }
+            if (email == 0) {
+                Messege = "Can not Blank Name";
+                document.getElementById("txtEmail").style.border = "1px solid red";
+            }
+            if (mob == 0) {
+                Messege = "Can not Blank Name";
+                document.getElementById("txtMob").style.border = "1px solid red";
+            }
+
+
+            if (Messege.length == 0) {
+                ShowProgress();
+                $('#loading1').toggle('slow', function () {
+                    div2();
+                    $('#loading1').hide();
+
+                });
+
+                document.getElementById("txtFname").style.border = "1px solid gray";
+                document.getElementById("txtLname").style.border = "1px solid gray";
+                document.getElementById("txtEmail").style.border = "1px solid gray";
+                document.getElementById("txtMob").style.border = "1px solid gray";
+                ShowProgress1();
+            }
+            HideProgress();
+     //   ShowProgress1();
+//        $("div.loading1").fadeIn(300).delay(1500).fadeOut(400);
+//        $("div.loading2").fadeIn(300).delay(1500).fadeOut(400);
+////        var loading1 = $(".loading1");
+//        loading1.show();
+
+       
+       
+      //  HideProgress1();
+
+//        loading1.hide();
+//        var loading2 = $(".loading2");
+//        loading2.show();
     }
     function ShowProgress() {
         setTimeout(function () {
@@ -49,6 +172,40 @@
     $('form').live("submit", function () {
         ShowProgress();
     });
+
+
+    function ShowProgress1() {
+        setTimeout(function () {
+            var modal = $('<div />');
+            modal.addClass("modal");
+            $('body').append(modal);
+            var loading = $(".loading3");
+            loading.show();
+            var top = Math.max($(window).height() / 2 - loading[0].offsetHeight / 2, 0);
+            var left = Math.max($(window).width() / 2 - loading[0].offsetWidth / 2, 0);
+            loading.css({ top: top, left: left });
+        }, 200);
+    }
+    $('form').live("submit", function () {
+        ShowProgress();
+    });
+
+    function HideProgress1() {
+        setTimeout(function () {
+            var modal = $('<div />');
+            modal.addClass("modal");
+            $('body').append(modal);
+            var loading = $(".loading1");
+            loading.hide();
+            var top = Math.max($(window).height() / 2 - loading[0].offsetHeight / 2, 0);
+            var left = Math.max($(window).width() / 2 - loading[0].offsetWidth / 2, 0);
+            loading.css({ top: top, left: left });
+        }, 200);
+    }
+    $('form').live("submit", function () {
+        ShowProgress();
+    });
+
 </script>
 <script type="text/javascript">
     function HideProgress() {
@@ -66,6 +223,8 @@
     $('form').live("submit", function () {
         ShowProgress();
     });
+
+   
 </script>
 <!-- Basic Page Head -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -89,7 +248,7 @@
 <link rel="stylesheet" type="text/css" href="assets/css/owl.theme.css">
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
-
+<link rel="stylesheet" type="text/css" href="assets/css/DivHeader.css">
 <!-- Google Fonts -->
 <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -164,6 +323,7 @@
                 Messege = "Can not Blank Name";
                 document.getElementById("txtFname").style.border = "1px solid red";
             }
+           
             else {
                 document.getElementById("txtFname").style.border = "1px solid inherit";
             }
@@ -233,7 +393,7 @@
 <div class="loading" align="center">
     Saving.. Please wait.<br />
     <br />
-    <img src="assets/img/loader.gif" alt="Loading" />
+    <img src="assets/img/loader.gif" alt="Loading" width="100px"  height="100px"/>
 </div>
 <!-- Site Loader -->
 <div class="site-loader">
@@ -289,7 +449,7 @@
     </div>
     <div class="banner-caption shadow">
     	<div class="caption-wrapper">
-            <h1>E-WALLET REGISTRATION</h1>
+            <h1>E-WALLET CREATION</h1>
             
         </div>
     </div>
@@ -309,24 +469,28 @@
             
                     <div class="data-form">
                         <form action="#" id="contact-form" method="post" enctype="multipart/form-data">
-                            <div class="row">
-                          
-                              
+
+                        <div class="container">
+    <div class="header">Create E-Wallet</div>
+    <div class="mainbody">
+                            <div class="row large">
+                            
+                              <div class="col-md-9 col-md-push-3">
                                 <div class="col-md-4">
                                     <label>First Name</label>
-                                    <input type="text" id="txtFname" name="form-subject" placeholder="First Name" />
+                                    <input type="text" id="txtFname" name="form-subject" placeholder="First Name" value="Mohammed" />
                                 </div>
                                 <div class="col-md-4">
                                     <label>Midle Name</label>
-                                    <input type="text" id="txtMname" name="form-subject" placeholder="Midle Name" />
+                                    <input type="text" id="txtMname" name="form-subject" placeholder="Midle Name"  value="Saleh"/>
                                 </div>
                                 <div class="col-md-4">
                                     <label>Last Name</label>
-                                    <input type="text" id="txtLname" name="form-subject" placeholder="Last Name" />
+                                    <input type="text" id="txtLname" name="form-subject" placeholder="Last Name"  value="Dhan"/>
                                 </div>
                                 <div class="col-md-4">
                                     <label>Passport No</label>
-                                    <input type="text" id="txtPasportNo" name="form-subject" placeholder="Passport No" />
+                                    <input type="text" id="txtPasportNo" name="form-subject" placeholder="Passport No" value="G-9665" />
                                 </div>
                                 <div class="col-md-4">
                                     <label>Nationality</label>
@@ -344,41 +508,77 @@
                                 </div>
                                <div class="col-md-4">
                                     <label>Email</label>
-                                    <input type="text" id="txtEmail" name="form-subject" placeholder="Email" />
+                                    <input type="text" id="txtEmail" name="form-subject" placeholder="Email"  value="mohemdsaleh@gmail.com"/>
                                 </div>
                               <div class="col-md-4">
                                     <label>Mobile#</label>
-                                    <input type="text" id="txtMob" name="form-subject" placeholder="Mobile No" />
+                                    <input type="text" id="txtMob" name="form-subject" placeholder="Mobile No" value="050 145 2252"/>
                                 </div>
-                           <div class="col-md-2">
-                                    <label>Card Type</label>
-                                      <select id="ddlCardType" class="form-control">
-                                      <option>VISA</option>
-                                      <option>MASTER</option>
-                                      </select>
+                           <div class="col-md-4">
+                                    <label>PIN Code</label>
+                                      <input type="text" id="Text1" name="form-subject" placeholder="PIN Code"  value="123568"/>
                     </div>
                     <div class="col-md-4">
                                     <label>Card Number</label>
-                                    <input type="text" id="txtCardNo" name="form-subject" placeholder="Card No" />
+                                    <input type="text" id="txtCardNo" name="form-subject" placeholder="Card No"  value="988-555-5663636"/>
                                 </div>
+                                <div class="col-md-4">
+<div id="Div1"  > <img id="Img1" src="assets/img/finger-print.jpg" alt="" width="75px" height="75px" /></div>
+                               </div>
+
                                 <div class="col-md-2" style="padding:30px;">
-                                 <input type="button" id="btnSave" value="Submit" class="btn btn-red"/>
+                                 <input type="button" id="btnSave1" value="Submit" class="btn btn-red" onclick="ConnectingToHajVisaPortal();"/>
                                 </div>
+
+                                <div class="col-md-2" style="padding:30px;">
+                                 <input type="button" id="Button1" value="Back" class="btn btn-red" onclick="GoBack();"/>
+                                </div>
+
+
                                 <div class="col-md-12">
-                                <div class="alert-box success">Successfully Submitted !!!</div>
+                                <div class="alert-box success"><b>IBAN : SA01 0000 0001 9098 0087</b></div>
+
+                                  <div class="alert-box success"><b>Dear pilgrim,
+You ATM card will be available in tow forms:
+Virtual form in MADA atheer mobile app
+Physical card form you can collect it once you arrival to KSA from Saudi bank
+</b></div>
                                                 <div class="alert-box failure">Error !!!</div>
                                                 <div class="alert-box warning"  runat="server" id="wrn">Required Field !!!</div>
                                   
                                    <input type="button" id="btnUpdate" value="Update" class="btn btn-red" style="display:none"/>
                                 </div>
+                                </div>
+                                
+                                <div class="col-md-3 col-md-pull-9" >
+                               
+                                <div id="loading1" class="loading1" > <img id="my_image1" src="assets/img/loader.gif" alt="Loading" width="30px" height="30px" /> Verifying Identity via MOHU Portal Using (Passport No., Nationality, Fingerprint)</div>
+                                
+                                <br />
+                             <div id="loading2" class="loading2"> <img id="my_image2" src="assets/img/verifying.png" alt="Loading" width="30px" height="30px" />Verified identity via MOHU portal using (Passport No., Nationality, Fingerprint)</div>
+                             <br />
+
+                                <div  class="loading3"> <img id="my_image3" src="assets/img/loader.gif" alt="Loading" width="30px" height="30px" /> Verifying hajj visa for current season via MOHU portal using (Passport no., Nationality, Fingerprint) </div>
+                                <br />
+                                 <div  class="loading3"> <img id="my_image4" src="assets/img/loader.gif" alt="Loading" width="30px" height="30px" /> Creating virtual bank account (IBAN) & virtual ATM card </div>
+                           </div>
+                            </div>
                             </div>
 
-                        </form>
-                   
-            </div>
-        </section>
+                            </div>
+
+                            </div>
+
+                             </form>
+                            
+                            
+                          </section>     
+                       
+                   </div>
+           
+     
         <!-- Section Contact End -->        
-    </div>
+   
 </main>
 <!-- Site Main End -->
 <div align="right"><!-- </div>

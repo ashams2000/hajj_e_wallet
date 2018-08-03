@@ -3,6 +3,57 @@
 
 <head>
 <style type="text/css">
+.cc-selector input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.cc-selector-2 input{
+    position:absolute;
+    z-index:999;
+}
+
+.visa{background-image:url(assets/img/visa.png);}
+.mastercard{background-image:url(assets/img/westernunin.jpg);}
+.wired{background-image:url(assets/img/wire.png);}
+.cash{background-image:url(assets/img/cash.png);}
+.cc-selector-2 input:active +.drinkcard-cc, .cc-selector input:active +.drinkcard-cc{opacity: .9;}
+.cc-selector-2 input:checked +.drinkcard-cc, .cc-selector input:checked +.drinkcard-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:100px;height:70px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.drinkcard-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
+a:visited{color:#888}
+a{color:#444;text-decoration:none;}
+p{margin-bottom:.3em;}
+* { font-family:monospace; }
+.cc-selector-2 input{ margin: 5px 0 0 12px; }
+.cc-selector-2 label{ margin-left: 7px; }
+span.cc{ color:#6d84b4 }
+</style>
+<style type="text/css">
     .modal
     {
         position: fixed;
@@ -28,11 +79,108 @@
         background-color: White;
         z-index: 999;
     }
+     .loading1
+    {
+       
+        display: none;
+      
+        background-color: White;
+        z-index: 999;
+    }
+      .loading2
+    {
+       
+        display: none;
+      
+        background-color: White;
+        z-index: 999;
+    }
+      .loading3
+    {
+       
+        display: none;
+      
+        background-color: White;
+        z-index: 999;
+    }
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
-    function ConnectingToHajVisaPortal() {
 
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds) {
+                break;
+            }
+        }
+    }
+    
+
+
+    function div3() {
+        $('#loading3').toggle('slow', function () {
+
+        });
+    }
+    function div2() {
+        $('#loading2').toggle('slow', function () {
+            $('#my_image3').attr('src', 'assets/img/verifying.png');
+            sleep(1000);
+            $('#my_image4').attr('src', 'assets/img/verifying.png');
+          
+            $("div.success").fadeIn(300).delay(1500).fadeIn(400);
+        });
+    }
+    function ConnectingToHajVisaPortal() {
+     var Messege = "";
+            var fname = $.trim($("#txtFname").val());
+          
+
+      
+
+            var cardno = $.trim($("#txtCardNo").val());
+
+    
+
+
+            if (fname == '') {
+
+                Messege = "Can not Blank Name";
+                document.getElementById("txtFname").style.border = "1px solid red";
+            }
+            else {
+                document.getElementById("txtFname").style.border = "1px solid inherit";
+            }
+           
+          
+
+            if (Messege.length == 0) {
+                ShowProgress();
+                $('#loading1').toggle('slow', function () {
+                    div2();
+                    $('#loading1').hide();
+
+                });
+
+                document.getElementById("txtFname").style.border = "1px solid gray";
+              
+                ShowProgress1();
+            }
+            HideProgress();
+     //   ShowProgress1();
+//        $("div.loading1").fadeIn(300).delay(1500).fadeOut(400);
+//        $("div.loading2").fadeIn(300).delay(1500).fadeOut(400);
+////        var loading1 = $(".loading1");
+//        loading1.show();
+
+       
+       
+      //  HideProgress1();
+
+//        loading1.hide();
+//        var loading2 = $(".loading2");
+//        loading2.show();
     }
     function ShowProgress() {
         setTimeout(function () {
@@ -49,6 +197,40 @@
     $('form').live("submit", function () {
         ShowProgress();
     });
+
+
+    function ShowProgress1() {
+        setTimeout(function () {
+            var modal = $('<div />');
+            modal.addClass("modal");
+            $('body').append(modal);
+            var loading = $(".loading3");
+            loading.show();
+            var top = Math.max($(window).height() / 2 - loading[0].offsetHeight / 2, 0);
+            var left = Math.max($(window).width() / 2 - loading[0].offsetWidth / 2, 0);
+            loading.css({ top: top, left: left });
+        }, 200);
+    }
+    $('form').live("submit", function () {
+        ShowProgress();
+    });
+
+    function HideProgress1() {
+        setTimeout(function () {
+            var modal = $('<div />');
+            modal.addClass("modal");
+            $('body').append(modal);
+            var loading = $(".loading1");
+            loading.hide();
+            var top = Math.max($(window).height() / 2 - loading[0].offsetHeight / 2, 0);
+            var left = Math.max($(window).width() / 2 - loading[0].offsetWidth / 2, 0);
+            loading.css({ top: top, left: left });
+        }, 200);
+    }
+    $('form').live("submit", function () {
+        ShowProgress();
+    });
+
 </script>
 <script type="text/javascript">
     function HideProgress() {
@@ -66,6 +248,8 @@
     $('form').live("submit", function () {
         ShowProgress();
     });
+
+   
 </script>
 <!-- Basic Page Head -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -89,7 +273,7 @@
 <link rel="stylesheet" type="text/css" href="assets/css/owl.theme.css">
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
-
+<link rel="stylesheet" type="text/css" href="assets/css/DivHeader.css">
 <!-- Google Fonts -->
 <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -136,9 +320,82 @@
 </script>
 
 <script src="http://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
+<style>
 
+  .credit_card
+    {
+       
+        display: block;
+      
+        background-color: White;
+        
+    }
+      .paypal
+    {
+       
+        display: none;
+      
+        background-color: White;
+        z-index: 999;
+    }
+      .wire
+    {
+       
+        display: none;
+      
+        background-color: White;
+        z-index: 999;
+    }
+      .cash
+    {
+       
+        display: none;
+      
+        background-color: White;
+        z-index: 999;
+    }
+</style>
 <script type="text/javascript">
+    function PopupCenter(url, title, w, h) {
+        var left = (screen.width / 2) - (w / 2);
+        var top = (screen.height / 2) - (h / 2);
+        var targetWin = window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=1, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+    }
+    $(function () {
+        $('#optcreditcard').click(function () {
+            $('#credit_card').show();
+          
+        });
 
+    })
+    $(function () {
+        $('#optpaypal').click(function () {
+
+            $('#paypal').toggle('slow', function () {
+                $('#creditcard').hide();
+            });
+
+
+        });
+
+    })
+    $(function () {
+        $('#optwired').click(function () {
+
+        
+        });
+
+    })
+    $(function () {
+        $('#optcash').click(function () {
+
+            alert('Cash Refund Not Available')
+        });
+
+    })
+    function GoBack() {
+        window.location = "DashBord.html";
+    }
     $(function () {
         $('#btnSave').click(function () {
 
@@ -164,6 +421,7 @@
                 Messege = "Can not Blank Name";
                 document.getElementById("txtFname").style.border = "1px solid red";
             }
+           
             else {
                 document.getElementById("txtFname").style.border = "1px solid inherit";
             }
@@ -233,7 +491,7 @@
 <div class="loading" align="center">
     Saving.. Please wait.<br />
     <br />
-    <img src="assets/img/loader.gif" alt="Loading" />
+    <img src="assets/img/loader.gif" alt="Loading" width="100px"  height="100px"/>
 </div>
 <!-- Site Loader -->
 <div class="site-loader">
@@ -289,7 +547,7 @@
     </div>
     <div class="banner-caption shadow">
     	<div class="caption-wrapper">
-            <h1>E-WALLET REGISTRATION</h1>
+            <h1>Refund</h1>
             
         </div>
     </div>
@@ -309,76 +567,106 @@
             
                     <div class="data-form">
                         <form action="#" id="contact-form" method="post" enctype="multipart/form-data">
-                            <div class="row">
-                          
+
+                        <div class="container">
+    <div class="header">Refund</div>
+    <div class="mainbody">
+                            <div class="row large">
+                            
+                              <div class="col-md-9 col-md-push-3">
+                                <div class="col-md-4">
+                                    <label>Refund Amount</label>
+                                    <input type="text" id="txtFname" name="form-subject" placeholder="Refund Amount" value="1000.00" />
+                                </div>
                               
-                                <div class="col-md-4">
-                                    <label>First Name</label>
-                                    <input type="text" id="txtFname" name="form-subject" placeholder="First Name" />
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Midle Name</label>
-                                    <input type="text" id="txtMname" name="form-subject" placeholder="Midle Name" />
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Last Name</label>
-                                    <input type="text" id="txtLname" name="form-subject" placeholder="Last Name" />
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Passport No</label>
-                                    <input type="text" id="txtPasportNo" name="form-subject" placeholder="Passport No" />
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Nationality</label>
-                                      <select id="ddlNation" class="form-control">
-                                      <option>Afghanistan</option>
-                                      <option>Bolivia</option>
-                                      <option>Czech</option>
-                                      <option>Libya</option>
-                                      <option>India</option>
-                                      <option>Saudi Arabia</option>
-                                      <option>United Arab Emirates</option>
-                                      <option>Zambia</option>
-                                      
-                                      </select>
-                                </div>
-                               <div class="col-md-4">
-                                    <label>Email</label>
-                                    <input type="text" id="txtEmail" name="form-subject" placeholder="Email" />
-                                </div>
-                              <div class="col-md-4">
-                                    <label>Mobile#</label>
-                                    <input type="text" id="txtMob" name="form-subject" placeholder="Mobile No" />
-                                </div>
-                           <div class="col-md-2">
-                                    <label>Card Type</label>
-                                      <select id="ddlCardType" class="form-control">
-                                      <option>VISA</option>
-                                      <option>MASTER</option>
-                                      </select>
-                    </div>
-                    <div class="col-md-4">
+                    <div class="clearfix"></div>
+                     <div class="col-md-3">
+                   <div class="cc-selector-2">
+        <input id="optcreditcard" type="radio" name="creditcard" value="visa" />
+        <label class="drinkcard-cc visa" for="visa2"></label>
+        </div>
+        </div>
+        <div class="col-md-3">
+                   <div class="cc-selector-2">
+        <input id="optpaypal" type="radio" name="creditcard" value="visa" />
+        <label style="padding-bottom:35px" class="drinkcard-cc mastercard" for="mastercard"></label>
+        </div>
+        </div>
+          <div class="col-md-3">
+                   <div class="cc-selector-2">
+        <input id="optwired" type="radio" name="creditcard" value="wired" />
+        <label class="drinkcard-cc wired" for="wired"></label>
+        </div>
+        </div>
+<div class="col-md-3">
+                   <div class="cc-selector-2">
+        <input id="optcash" type="radio" name="creditcard" value="wired" />
+        <label class="drinkcard-cc cash" for="cash"></label>
+        </div>
+        </div>
+        <div class="credit_card">
+                                  <div class="col-md-3">
                                     <label>Card Number</label>
                                     <input type="text" id="txtCardNo" name="form-subject" placeholder="Card No" />
                                 </div>
-                                <div class="col-md-2" style="padding:30px;">
-                                 <input type="button" id="btnSave" value="Submit" class="btn btn-red"/>
+                                <div class="col-md-3">
+                                    <label>Expiry Year</label>
+                                    <input type="month" id="txtYear" name="form-subject" placeholder="Expiry Year" />
                                 </div>
+                                <div class="col-md-2">
+                                    <label>CCV</label>
+                                    <input type="text" id="txtCCV" name="form-subject" placeholder="CCV" />
+                                </div>
+
+                                </div>
+                                <div class="col-md-2" style="padding:30px;">
+                                 <input type="button" id="btnSave1" value="Submit" class="btn btn-red" onclick="ConnectingToHajVisaPortal();"/>
+                                </div>
+
+                                <div class="col-md-2" style="padding:30px;">
+                                 <input type="button" id="Button1" value="Back" class="btn btn-red" onclick="GoBack();"/>
+                                </div>
+
                                 <div class="col-md-12">
-                                <div class="alert-box success">Successfully Submitted !!!</div>
+                                <div class="alert-box success"><b>Western Union Ref No : 21566 5566 8999</b></div>
+
+                                  <div class="alert-box success"><b>Amount Transfred Successfully</b></div>
                                                 <div class="alert-box failure">Error !!!</div>
                                                 <div class="alert-box warning"  runat="server" id="wrn">Required Field !!!</div>
                                   
                                    <input type="button" id="btnUpdate" value="Update" class="btn btn-red" style="display:none"/>
                                 </div>
+                                </div>
+                                
+                                <div class="col-md-3 col-md-pull-9" >
+                               
+                                <div id="loading1" class="loading1" > <img id="my_image1" src="assets/img/loader.gif" alt="Loading" width="30px" height="30px" /> Verifying account details</div>
+                                
+                                <br />
+                             <div id="loading2" class="loading2"> <img id="my_image2" src="assets/img/verifying.png" alt="Loading" width="30px" height="30px" />Verified account details</div>
+                             <br />
+
+                                <div  class="loading3"> <img id="my_image3" src="assets/img/loader.gif" alt="Loading" width="30px" height="30px" /> Transfers remaining amount via western union to pilgrim's country </div>
+                                <br />
+                                 <div  class="loading1"> <img id="my_image4" src="assets/img/loader.gif" alt="Loading" width="30px" height="30px" /> Creating virtual bank account (IBAN) & virtual ATM card </div>
+                           </div>
+                            </div>
                             </div>
 
-                        </form>
-                   
-            </div>
-        </section>
+                            </div>
+
+                            </div>
+
+                             </form>
+                            
+                            
+                          </section>     
+                       
+                   </div>
+           
+     
         <!-- Section Contact End -->        
-    </div>
+   
 </main>
 <!-- Site Main End -->
 <div align="right"><!-- </div>

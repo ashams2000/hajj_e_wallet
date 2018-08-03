@@ -1,0 +1,13 @@
+@charset "utf-8";
+	.NormalCharacterStyle
+{
+	font-family : Arial Black;
+	font-size : 12px;
+	color : #000000;
+	color : rgb(0, 0, 0);
+}
+.Banner_3_
+{
+	background-image : url(Banner_3_.png);
+	background-repeat : no-repeat;
+}
